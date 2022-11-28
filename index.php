@@ -4,43 +4,34 @@ Una nostra funzione utilizzerà questo dato per generare una password casuale
 Scriviamo tutto (logica e layout) in un unico file *index.php* -->
 
 <?php
-// Funzione random lettere minuscole
-function rand_down_letter()
-{
-    $int = rand(0, 25);
-    $a_z = "abcdefghijklmnopqrstuvwxyz";
-    $rand_letter = $a_z[$int];
-    return $rand_letter;
-}
-// Funzione random lettere maiuscole
-function rand_up_letter()
-{
-    $int = rand(0, 25);
-    $a_z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $rand_letter = $a_z[$int];
-    return $rand_letter;
-}
-// Funzione random numeri
-function rnd_number()
-{
-    $rnd_num = rand(1, 10);
-    return $rnd_num;
-}
-// Funzione random caratteri speciali
-function rnd_character()
-{
-    $int = rand(0, 8);
-    $character = "!@#$%^&*'";
-    return $character[$int];
-}
-var_dump(rand_down_letter());
-var_dump(rand_up_letter());
-var_dump(rnd_number());
-var_dump(rnd_character());
-
 // GET prende il valore che l'user mette nell'input
 $user_lenght = $_GET["lenght-email"] ?? "";
 var_dump($user_lenght);
+
+// Funzione random lettere minuscole
+function rand_p($user_lenght)
+{
+    $password_element = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890", "!@#$%^&*'£"];
+
+    $result = "";
+    if ($user_lenght > 0) {
+        var_dump("é maggiore di 0");
+        for ($i = 0; $i < $user_lenght; $i++) {
+            $rnd_comp = rand(0, count($password_element) - 1);
+            var_dump($rnd_comp);
+            $rnd_element = rand(0, strlen($password_element[$rnd_comp]) - 1);
+            var_dump($rnd_element);
+            $result .= $password_element[$rnd_comp][$rnd_element];
+            var_dump($result);
+        }
+        return $result;
+    } else {
+        return $result = "Hai sbagliato ad inserire la lunghezza della password";
+    }
+}
+
+
+
 
 ?>
 
@@ -75,6 +66,12 @@ var_dump($user_lenght);
                 <button type="reset" class="btn btn-secondary">Annulla</button>
             </form>
 
+
+            <!-- Risultato -->
+
+            <p> La password generata è:
+                <!-- <?php echo $result; ?> -->
+            </p>
         </div>
     </main>
 </body>
