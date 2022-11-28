@@ -3,8 +3,8 @@ Una nostra funzione utilizzerà questo dato per generare una password casuale
 (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente.
 Scriviamo tutto (logica e layout) in un unico file *index.php* -->
 
-
 <?php
+// Funzione random lettere minuscole
 function rand_down_letter()
 {
     $int = rand(0, 25);
@@ -12,6 +12,7 @@ function rand_down_letter()
     $rand_letter = $a_z[$int];
     return $rand_letter;
 }
+// Funzione random lettere maiuscole
 function rand_up_letter()
 {
     $int = rand(0, 25);
@@ -19,11 +20,13 @@ function rand_up_letter()
     $rand_letter = $a_z[$int];
     return $rand_letter;
 }
+// Funzione random numeri
 function rnd_number()
 {
     $rnd_num = rand(1, 10);
     return $rnd_num;
 }
+// Funzione random caratteri speciali
 function rnd_character()
 {
     $int = rand(0, 8);
@@ -35,14 +38,12 @@ var_dump(rand_up_letter());
 var_dump(rnd_number());
 var_dump(rnd_character());
 
+// GET prende il valore che l'user mette nell'input
 $user_lenght = $_GET["lenght-email"];
 if (!empty($user_lenght)) {
-    $email_num = email_lenght($user_lenght);
+    // $email_num = email_lenght($user_lenght);
 }
-function email_lenght($lenght)
-{
-    echo "Ciao";
-}
+
 ?>
 
 <!DOCTYPE html>
